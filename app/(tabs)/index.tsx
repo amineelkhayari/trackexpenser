@@ -37,9 +37,7 @@ export default function TabOneScreen() {
   AND strftime('%m', DateExpense) =  strftime('%m', datetime('now','localtime'))
   order by DateExpense DESC
   `, SetExpenseList);
-    console.log(ExpenseList)
     str.CalculateExpense(selectedUser, ExpenseList, SetCalculate)
-    console.log(calculate)
     SetExpensed(calculate?.Expense)
     Setdebt(calculate?.Debt)
     SetCredit(calculate?.Credit);
@@ -184,7 +182,7 @@ export default function TabOneScreen() {
               <TouchableOpacity
                 activeOpacity={0.5}
                 onPress={() =>   router.push({
-                  pathname: `/Transaction`
+                  pathname: `/Transaction`,
                 })}
               >
                 <Text style={styles.seeAll}>See All</Text>
