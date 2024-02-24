@@ -13,27 +13,13 @@ export default function App() {
   const isFocused = useIsFocused();
   
  const [User, SetUser] = useState("");
- const [test, SetTest] = useState(async () => {
-   let va = await str.getData('Use')
 
-   //selectedUser == va;
-   if (va === undefined) {
-     alert("please Select user First")
-     //navigation.goBack()
-   }
-
-   else {
-
-     console.log(va)
-     SetUser(va)
-     //console.log(selectedUser,"Value get from Storage",va)
-   }
-
- });
 
   useEffect(() => {
     (async () => {
       setScanned(false);
+      await str.getTest('User',SetUser,setScanned)
+
       const { status } = await BarCodeScanner.requestPermissionsAsync();
       setHasPermission(status === 'granted');
       
