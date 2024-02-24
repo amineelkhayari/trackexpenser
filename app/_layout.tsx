@@ -6,6 +6,8 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 
 import { useColorScheme } from '@/components/useColorScheme';
+import { db, IData } from '@/interfaces/calsses/DataBase';
+
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -33,7 +35,41 @@ export default function RootLayout() {
 
   useEffect(() => {
     if (loaded) {
+      db.createTableManually(`
+      CREATE TABLE if NOT EXISTS category (
+      ID INTEGER PRIMARY KEY AUTOINCREMENT,
+      NameCat TEXT NOT NULL UNIQUE
+      );`);
+  db.createTableManually(`
+      CREATE TABLE if NOT EXISTS subCategory (
+        ID INTEGER PRIMARY KEY AUTOINCREMENT,
+        NameSubCat TEXT NOT NULL UNIQUE,
+        catID INTEGER,
+          FOREIGN KEY (catID) 
+            REFERENCES category (IdCat) 
+               ON DELETE CASCADE 
+               ON UPDATE NO ACTION
+        
+      );
+      `)
+  db.createTableManually(`CREATE TABLE if NOT EXISTS Expense (
+        ID INTEGER PRIMARY KEY AUTOINCREMENT,
+        Title TEXT,
+        PaymentTransaction TEXT UNIQUE,
+        DateExpense DATE DEFAULT (datetime('now','localtime')),
+        PayedBy TEXT NOT NULL,
+        Amount REAL NOT NULL,
+        Structure TEXT,
+        IdSubCat INTEGER,
+         FOREIGN KEY (IdSubCat) 
+            REFERENCES subCategory (IdCat) 
+               ON DELETE CASCADE 
+               ON UPDATE NO ACTION   
+        
+      );`);
       SplashScreen.hideAsync();
+
+
     }
   }, [loaded]);
 

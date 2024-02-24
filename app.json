@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "TrackExpenser",
-    "slug": "TrackExpenser",
+    "slug": "trackexpenser",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -22,7 +22,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.aminemohammed071.trackexpenser"
     },
     "web": {
       "bundler": "metro",
@@ -34,6 +35,15 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "4d50e1ba-36ad-4500-916d-e298984de3e3"
+      }
+    },
+    "owner": "aminemohammed071"
   }
 }

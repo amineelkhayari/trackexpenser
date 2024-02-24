@@ -2,10 +2,11 @@ import React from 'react';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Link, Tabs } from 'expo-router';
 import { Pressable } from 'react-native';
-
 import Colors from '@/constants/Colors';
 import { useColorScheme } from '@/components/useColorScheme';
 import { useClientOnlyValue } from '@/components/useClientOnlyValue';
+import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
+
 
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 function TabBarIcon(props: {
@@ -29,15 +30,15 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: 'Home',
+          tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
           headerRight: () => (
             <Link href="/modal" asChild>
               <Pressable>
                 {({ pressed }) => (
                   <FontAwesome
-                    name="info-circle"
-                    size={25}
+                    name="plus-circle"
+                    size={40}
                     color={Colors[colorScheme ?? 'light'].text}
                     style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
                   />
@@ -48,10 +49,43 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="two"
+      name="Transaction"
+      options={{
+        title: 'History Transaction',
+        tabBarIcon: ({ color }) => <MaterialIcons name="import-export" size={24} color="black" />,
+
+        headerShown:false,
+        
+      }}
+    />
+
+
+
+      <Tabs.Screen
+        name="category"
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: 'Category',
+          tabBarIcon: ({ color }) => <TabBarIcon name="caret-down" color={color} />,
+          headerShown:false,
+          
+        }}
+      />
+      <Tabs.Screen
+        name="Subcategory"
+        options={{
+          title: 'Sub Cat',
+          tabBarIcon: ({ color }) => <TabBarIcon name="caret-down" color={color} />,
+          headerShown:false,
+          
+        }}
+      />
+      <Tabs.Screen
+        name="importData"
+        options={{
+          title: 'Import',
+          tabBarIcon: ({ color }) => <MaterialCommunityIcons name="database-import-outline" size={24} color="black" />,
+          headerShown:false,
+          
         }}
       />
     </Tabs>
